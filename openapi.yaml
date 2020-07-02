@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+    title: Divvy Bike Rental API
+    description: Methods to serve data for Divvy Bike Rental
+    version: '1.0'
+paths:
+    /station:
+        get:
+            summary: Get bike station details.
+            tags:
+                - Station
+            description: Get bike station details.
+            operationId: get-station
+            parameters:
+                - name: stationId
+                  in: query
+                  description: Station unique identifier
+                  schema:
+                    type: string
+            responses:
+                '200':
+                    description: OK
+                '202':
+                    description: Accepted
+                '400':
+                    description: Bad Request
+                '401':
+                    description: Not Authorized
+                '404':
+                    description: Not Found
+                '500':
+                    description: Server Error
+    /rider:
+        get:
+            summary: Get rider trip details by station, date and age for one or more station ids.
+            tags:
+                - Rider
+            description: Get rider trip details by station, date and age for one or more station ids.
+            operationId: get-rider
+            parameters:
+                - name: stationId
+                  in: query
+                  description: Station unique id. Comma delimited lists accepted.
+                  schema:
+                    type: string
+            responses:
+                '200':
+                    description: OK
+                '202':
+                    description: Accepted
+                '400':
+                    description: Bad Request
+                '401':
+                    description: Not Authorized
+                '404':
+                    description: Not Found
+                '500':
+                    description: Server Error
+    /trip:
+        get:
+            summary: Get latest 20 trip for each day for one or more station ids.
+            tags:
+                - Trip
+            description: Get latest 20 trip for each day for one or more station ids.
+            operationId: get-trip
+            parameters:
+                - name: stationId
+                  in: query
+                  description: Station unique id. Comma delimited lists accepted.
+                  schema:
+                    type: string
+            responses:
+                '200':
+                    description: OK
+                '202':
+                    description: Accepted
+                '400':
+                    description: Bad Request
+                '401':
+                    description: Not Authorized
+                '404':
+                    description: Not Found
+                '500':
+                    description: Server Error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []

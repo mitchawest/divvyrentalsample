@@ -1,0 +1,4 @@
+# Do not commit node modules, coverage, environment variables, or build folder
+node_modules/
+coverage/
+dist/
